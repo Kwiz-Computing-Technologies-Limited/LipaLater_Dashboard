@@ -1,0 +1,104 @@
+Case Study Queries:
+
+Based on the provided Data,
+- create a dashboard 
+ (a) an overview of the provided data and recommendations to influence strategy
+ (b) Rank the products (Phones, Fridges, Tablets etc) based on the repayments- best to least performing
+ (c) Analyse the performance of repeat clients
+ (d) Detail the performance based on the disbursed months
+ (e) In your understanding, segment the data into the main clusters
+
+Metrics:
+Collections Rate: Amount Collected against the Expected Amount
+
+
+
+
+WHAT I HAVE IMPLEMENTED:
+____________________________
+* calculated ("Collections Rate") repayment rate as:
+    "Total Repayment Derived (Amount Collected)" as % of "Total Expected Repayment Derived (Expected Amount)"
+    
+* aggregated this % to find mean repayment % for "products (Item Type)" and all the other ranking variables implemented
+
+NOTE: Assumption that for multiple item puchases, monthly payments cover each items proportionately:
+      * group the data by:
+       - client ID
+       - Submitted On Date
+       - Principal Disbursed Derived
+       
+    and calculate 
+      - "item price" out of "total price paid for multiple item purchases".
+      
+      * Use this proportion to adjust the item values for:
+        - arrears amount
+        - principal/interest/fee disbursed
+        - principal/interest/fee repaid
+        - principal/interest/fee outstanding
+        - total expected repayment
+        - total repayment derived)
+_____________________________
+
+
+1. overview of the provided data and recommendations to influence strategy (TAB: "Overview")
+    The user:
+    - selects all or specific product to view and obtains summary with:
+        - Total loan amount disbursed
+        - Number of clients disbursed to
+        - Number of Partner stores
+        - Returns obtained 
+        - Returns expected
+
+    - Ranks "Brands" for the selected products by "sales frequency" or "sales amount (revenue)"
+    - Visualizes Patner Stores from which buyers have accrued largest arrears (on the selected product)
+    - Visualizes and gets a comment on the Relationship between the "arrears days" and the "arrears amount" (on the selected product)
+    - Visualizes the distributions of both "Arrears Days" and "Arrears Amount" separately
+    
+
+2. Rank:  (TAB: "Performance")
+    - the products (Phones, Fridges, Tablets etc) [REQUIRED]
+    - other features (Brand, Partner stores, client location, referral source and disbursed Months) [ADDITIONAL]
+    
+  Best to least performing Based on:
+    - the repayment rates  [REQUIRED]
+    - sales frequency [ADDITIONAL]
+    - principal disbursed [ADDITIONAL]
+    - Arrears accrued [ADDITIONAL]
+    
+3. performance of repeat clients (TAB: "Performance")
+    The parragraph summarises:
+    - proportion of repeat customers
+    - proportion of Loans to repeat customers
+    - average number of transactions per customer
+    - Patners these purchases were made from
+    - Average Total payouts to these partners
+    - returns generated (nominal) from repeat customers
+    - expected expected (nominal) from repeat customers
+    
+4. performance based on the disbursed months (TAB: "Performance")
+    Currently selecting "Month Submitted" under "Rank By" in TAB 2, enables us rank disbursed months based on:
+    - the repayment rates  
+    - sales frequency 
+    - principal disbursed 
+    - Arrears accrued 
+    
+5. product clusters
+    - I used K-means clustering for this. User selects:
+        - features (variables) on which to cluster the data
+        - The number of clusters to fit
+    - the output includes:
+        - cluster means for the variables fitted
+        - number of product items in selected cluster
+        - the products in the cluster
+    
+    
+
+      
+
+
+
+
+      
+
+    
+
